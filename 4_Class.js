@@ -1,4 +1,6 @@
+const { BigInteger } = require("jsbn");
 
+/* The Class */
 class Person {
     constructor(name, lastname, age) {
         this.name=name;
@@ -6,6 +8,7 @@ class Person {
         this.age=age;
 }}
 
+/* Database */
 let employees = [
     new Person("Juan", "Sanchez", 55),
     new Person("Sancho", "Panza", 22),
@@ -13,7 +16,12 @@ let employees = [
     new Person("Kyle", "Reese", 25)
 ];
 
+/* Utils */
 function line(n) {console.log("-".repeat(n));}
+const ERROR_USER_EXIST = "Error: The user already exists.";
+const ERROR_USER_NOT_EXIST = "Error: The user does not exist.";
+const ERROR_AMOUNT_ARGUMENTS = "Error: Incorrect amount of arguments.";
+
 
 line(80);
 console.log("Argument Reader");
@@ -21,115 +29,98 @@ for (let i = 0; i < process.argv.length; i++) console.log(`   ${i}. value: ${pro
 console.log("\n");
 
 
-/*------------------------------------ Process Area ------------------------------------*/
 
 if(process.argv.length > 1) {
     let eureka = false;
 
     // CREATE <userName> <userLastname> <age>
     if(process.argv[2] === "CREATE") {
+        
         // Validate arguments
         if(process.argv.length === 6) {
+            
             // Validate user existence 
             employees.forEach(employee => {
-                if(process.argv[3] === employee.name && process.argv[4] === employee.lastname &&  employee.age.toString() === process.argv[5]) {
-                    eureka = true;  
-                }
+                if (process.argv[3] === employee.name && 
+                    process.argv[4] === employee.lastname && 
+                    process.argv[5] === employee.age.toString()) 
+                {eureka = true;}
             });
-
-            if(!eureka) {
-                employees.push(new Person(process.argv[3], process.argv[4], process.argv[5]));
-            } else {
-                console.log(`Error: The user already exists.`);
-            }
             
-        } else {
-            console.log(`Error: Incorrect amount of arguments.`);
-        }    
+            (eureka?
+                console.log(ERROR_USER_EXIST) :
+                employees.push(new Person(process.argv[3], process.argv[4], parseInt(process.argv[5]))))
+            
+        } else console.log(ERROR_AMOUNT_ARGUMENTS);
     
     
+    // READ
     } else if(process.argv[2] === "READ") {
-        // READ
+        
         // Validate arguments
         if(process.argv.length === 4) {
+            
+            // READ ALL
             if(process.argv[3] === "ALL") {
-                employees.forEach(employee => {
-                    console.log(`   ${employee.name} ${employee.lastname} ${employee.age}`);
-                });
+                console.log("[name]\t[lastname]\t[age]");
+                employees.forEach(employee => 
+                    {console.log(`${employee.name}\t${employee.lastname}\t\t${employee.age}`);});
+
             } else {
+                // READ <name>
                 // Validate user existence
                 employees.forEach(employee => {
-                    if(process.argv[3] === employee.name) {
-                        console.log(`   ${employee.name} ${employee.lastname} ${employee.age}`);
+                    if (process.argv[3] === employee.name) {
+                        console.log(`\t${employee.name}\t${employee.lastname}\t\t${employee.age}`);
                         eureka = true;
-                    }
-                });
+                }});
 
-                if(!eureka) {
-                    console.log(`Error: The user does not exist.`);
-                }
+                if(!eureka) console.log(ERROR_USER_NOT_EXIST)
             }
-        } else {
-            console.log(`Error: Incorrect amount of arguments.`);
-        }
-        
+        } else console.log(ERROR_AMOUNT_ARGUMENTS);
 
+
+    // UPDATE <name> <new-name> <new-lastname> <new-age>
     } else if(process.argv[2] === "UPDATE") {
-        // UPDATE
+        
         // Validate arguments
         if(process.argv.length === 7) {
+            
             // Validate user existence
             employees.forEach(employee => {
-                if(process.argv[3] === employee.name) {
+                if (employee.name === process.argv[3]) {
                     employee.name = process.argv[4];
                     employee.lastname = process.argv[5];
                     employee.age = process.argv[6];
                     eureka = true;
-                }
-            });
+            }});
 
-            if(!eureka) {
-                console.log(`Error: The user does not exist.`);
-            }
+            if(!eureka) console.log(ERROR_USER_NOT_EXIST);
+        } else console.log(ERROR_AMOUNT_ARGUMENTS);
 
 
-        } else {
-            console.log(`Error: Incorrect amount of arguments.`);
-        }
-
-
+    // DELETE
     } else if(process.argv[2] === "DELETE") {
-        // DELETE
+
         // Validate arguments
         if(process.argv.length === 4) {
-            if(process.argv[3] === "ALL") {
-                while(employees.length > 0) { 
-                    employees.pop();
-                }
-            } else {
+            if(process.argv[3] === "ALL") {while(employees.length > 0) employees.pop();} 
+            else {
+
                 // Validate user existence
                 employees.forEach(employee => {
                     if(process.argv[3] === employee.name) {
                         employees.splice(employees.indexOf(employee), 1);
                         eureka = true;
-                    }
-                });
-                if(!eureka) {
-                    console.log(`Error: The user does not exist.`);
-                }
+                }});
+                if(!eureka) console.log(ERROR_USER_NOT_EXIST);
             }
-        } else {
-            console.log(`Error: Incorrect amount of arguments.`);
-        }
-    }
-}
-
-/*------------------------------------ Process Area ------------------------------------*/
-
+        } else console.log(ERROR_AMOUNT_ARGUMENTS);
+}}
 
 
 line(80);
-console.log(`Users Review`);
+console.log("Users Review\n\t[name]\t[lastname]\t[age]");
 employees.forEach(employee => {
     console.log(`\t${employee.name}\t${employee.lastname}\t\t${employee.age}`);
 });
