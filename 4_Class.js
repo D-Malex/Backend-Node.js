@@ -13,8 +13,10 @@ let employees = [
     new Person("Kyle", "Reese", 25)
 ];
 
+function line(n) {console.log("-".repeat(n));}
 
-console.log("\nArgument Reader");
+line(80);
+console.log("Argument Reader");
 for (let i = 0; i < process.argv.length; i++) console.log(`   ${i}. value: ${process.argv[i]}`);
 console.log("\n");
 
@@ -126,9 +128,9 @@ if(process.argv.length > 1) {
 
 
 
-/*------------------------------------ Review ------------------------------------*/
-console.log(`\nUsers Review`);
+line(80);
+console.log(`Users Review`);
 employees.forEach(employee => {
-    console.log(`   ${employee.name}   ${employee.lastname}    ${employee.age}`);
+    console.log(`\t${employee.name}\t${employee.lastname}\t\t${employee.age}`);
 });
 /*------------------------------------ Review ------------------------------------*/
