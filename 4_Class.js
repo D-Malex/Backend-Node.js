@@ -1,14 +1,9 @@
+// FUNCTIONS & CONSTS
 const { BigInteger } = require("jsbn");
+const ERROR_USER_EXIST = "Error: The user already exists.";
+const ERROR_USER_NOT_EXIST = "Error: The user does not exist.";
+const ERROR_AMOUNT_ARGUMENTS = "Error: Incorrect amount of arguments.";
 
-/* The Class */
-class Person {
-    constructor(name, lastname, age) {
-        this.name=name;
-        this.lastname=lastname;
-        this.age=age;
-}}
-
-/* Database */
 let employees = [
     new Person("Juan", "Sanchez", 55),
     new Person("Sancho", "Panza", 22),
@@ -16,11 +11,16 @@ let employees = [
     new Person("Kyle", "Reese", 25)
 ];
 
-/* Utils */
 function line(n) {console.log("-".repeat(n));}
-const ERROR_USER_EXIST = "Error: The user already exists.";
-const ERROR_USER_NOT_EXIST = "Error: The user does not exist.";
-const ERROR_AMOUNT_ARGUMENTS = "Error: Incorrect amount of arguments.";
+
+
+// CLASS
+class Person {
+    constructor(name, lastname, age) {
+        this.name=name;
+        this.lastname=lastname;
+        this.age=age;
+}}
 
 
 line(80);
@@ -124,4 +124,3 @@ console.log("Users Review\n\t[name]\t[lastname]\t[age]");
 employees.forEach(employee => {
     console.log(`\t${employee.name}\t${employee.lastname}\t\t${employee.age}`);
 });
-/*------------------------------------ Review ------------------------------------*/
