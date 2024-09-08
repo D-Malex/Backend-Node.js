@@ -4,24 +4,19 @@ class Person {
         this.name=name;
         this.lastname=lastname;
         this.age=age;
-    }
-}
+}}
 
-let employees=[];
-employees[0]=new Person("Juan","Sanchez",55);
-employees[1]=new Person("Sancho","Panza",22);
-employees[2]=new Person("John","Connor",16);
-employees[3]=new Person("Kyle","Reese",25);
+let employees = [
+    new Person("Juan", "Sanchez", 55),
+    new Person("Sancho", "Panza", 22),
+    new Person("John", "Connor", 16),
+    new Person("Kyle", "Reese", 25)
+];
 
-
-/*------------------------------------ Arguments ------------------------------------*/
 
 console.log("\nArgument Reader");
 for (let i = 0; i < process.argv.length; i++) console.log(`   ${i}. value: ${process.argv[i]}`);
 console.log("\n");
-
-/*------------------------------------ Arguments ------------------------------------*/
-
 
 
 /*------------------------------------ Process Area ------------------------------------*/
