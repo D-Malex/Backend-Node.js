@@ -47,7 +47,7 @@ if(process.argv.length > 1) {
                 {eureka = true;}
             });
             
-            (eureka?
+            (!eureka?
                 console.log(ERROR_USER_EXIST) :
                 employees.push(new Person(process.argv[3], process.argv[4], parseInt(process.argv[5]))))
             
