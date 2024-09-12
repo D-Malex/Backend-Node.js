@@ -1,4 +1,4 @@
-# Requirements for Class 4
+# Requirements for V1
 
 ## Español:
 
@@ -8,7 +8,7 @@ Para la entrega de esta semana te pido que al codigo explicado en clase le agreg
    Al ejecutar el programa:
 
    ```apache
-   node 4_Class.js CREATE Juan Lopez 33
+   node app.js CREATE Juan Lopez 33
    ```
 
    Se ingresara al array a esta persona verificando que no este desde antes.
@@ -16,7 +16,7 @@ Para la entrega de esta semana te pido que al codigo explicado en clase le agreg
    Al ejecutar el programa:
 
    ```apache
-   node 4_Class.js UPDATE nombre  Juan Joan Peres 34
+   node app.js UPDATE nombre  Juan Joan Peres 34
    ```
 
    Se verificara la existencia de un usuario Juan y se actulizaran los datos de nombre, apellido y edad.
@@ -25,7 +25,7 @@ Para la entrega de esta semana te pido que al codigo explicado en clase le agreg
    Al ejecutar el programa:
 
    ```apache
-   node 4_Class.js DELETE nya Juan Perez
+   node app.js DELETE nya Juan Perez
    ```
 
    Se verificara la existencia del usuario y se lo borrara.
@@ -39,14 +39,14 @@ For this week's delivery I ask you to add to the code explained in class:
    When running the program:
 
    ```apache
-   node 4_Class.js CREATE Juan Lopez 33
+   node app.js CREATE Juan Lopez 33
    ```
    This person will be entered into the array, verifying that he or she is not there before.
 2. The `UPDATE name <user_old_name> <user_new_name> <user_new_last> <new_age>` functionality
    When running the program:
 
    ```apache
-   node 4_Class.js UPDATE name Juan Joan Peres 34
+   node app.js UPDATE name Juan Joan Peres 34
    ```
    The existence of a Juan user will be verified and the name, surname and age data will be updated.
 3. The `DELETE ALL` functionality that will delete all elements of the array.
@@ -54,7 +54,7 @@ For this week's delivery I ask you to add to the code explained in class:
    When running the program:
 
    ```apache
-   node 4_Class.js DELETE nya Juan Perez
+   node app.js DELETE nya Juan Perez
    ```
    The existence of the user will be verified and it will be deleted.
 5. At the end of the program, it is requested only as a debug to print the contents of the array used.
