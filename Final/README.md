@@ -14,7 +14,7 @@ Puede utilizar "Postman" para enviar solicitudes a los siguientes puntos finales
 + POST - `/api/user/login` con `{email, contraseña}` como cuerpo de la solicitud
 + GET - `/api/protected` al que solo podrás acceder si inicias sesión correctamente
 
-Basado en [este] vídeo tutorial (https://www.youtube.com/watch?v=2jqok-WgelI)
+Basado en [este](https://www.youtube.com/watch?v=2jqok-WgelI) vídeo tutorial.
 
 
 ## English
