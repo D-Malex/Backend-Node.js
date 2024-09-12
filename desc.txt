@@ -1,5 +1,0 @@
-SEADEA (Sistema de Educación A Distancia Del Ejercito Argentino), Creación de API. Uso de Sequelize, SQLite, Express, JWT y Node.js. -------- SEADEA (Distance Education System of the Argentine Army), Creation of API. Using Sequelize, SQLite, Express, JWT and Node.js
-
-www.seadea.edu.ar/
-
-nodejs javascript npm jwt express crud migrations sqlite sequelize seeds jwt-token api-rest sqlite3 jwt-authentication
