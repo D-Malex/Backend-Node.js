@@ -1,4 +1,4 @@
-# Requierments for class 6
+# Requierments for V3
 
 ## Español - Windows
 
