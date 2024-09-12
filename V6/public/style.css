@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.form-group {
+    margin-bottom: 1em;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+.form-group input {
+    width: 100%;
+    padding: 0.5em;
+}
+.form-group button {
+    padding: 0.5em 2em;
+}
+.response {
+    margin-top: 1em;
+    padding: 1em;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+}

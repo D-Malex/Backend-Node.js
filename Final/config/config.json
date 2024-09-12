@@ -1,0 +1,33 @@
+{
+  "development": {
+    "dbusers": {
+      "storage": "./database.sqlite3",
+      "dialect": "sqlite"
+  },
+  "dblogistica": {
+      "storage": "./dblogistica.sqlite",
+      "dialect": "sqlite"
+  }
+
+  },
+  "test": {
+    "dbusers": {
+      "storage": "./database.sqlite3",
+      "dialect": "sqlite"
+  },
+  "dblogistica": {
+      "storage": "./dblogistica.sqlite",
+      "dialect": "sqlite"
+  }
+  },
+  "production": {
+    "dbusers": {
+      "storage": "./database.sqlite3",
+      "dialect": "sqlite"
+  },
+  "dblogistica": {
+      "storage": "./dblogistica.sqlite",
+      "dialect": "sqlite"
+  }
+  }
+  }

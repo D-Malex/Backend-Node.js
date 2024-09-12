@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Juan",
+    "lastname": "Sanchez",
+    "age": 55
+  },
+  {
+    "name": "Sancho",
+    "lastname": "Panza",
+    "age": 22
+  },
+  {
+    "name": "John",
+    "lastname": "Connor",
+    "age": 16
+  },
+  {
+    "name": "Kyle",
+    "lastname": "Reese",
+    "age": 25
+  },
+  {
+    "name": "Cosme",
+    "lastname": "Fulanito",
+    "age": 22
+  }
+]

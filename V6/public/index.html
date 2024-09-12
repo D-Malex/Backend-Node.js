@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="CRUD_icon.png" type="image/x-icon">
+    <title>API Choferes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>API Choferes</h1>
+
+        <!-- Formulario CREATE CHOFER -->
+        <h2>Crear Chofer</h2>
+        <div class="form-group">
+            <label for="create-id">ID:</label>
+            <input type="text" id="create-id">
+        </div>
+        <div class="form-group">
+            <label for="create-nombre">Nombre:</label>
+            <input type="text" id="create-nombre">
+        </div>
+        <div class="form-group">
+            <label for="create-apellido">Apellido:</label>
+            <input type="text" id="create-apellido">
+        </div>
+        <div class="form-group">
+            <label for="create-dni">DNI:</label>
+            <input type="text" id="create-dni">
+        </div>
+        <div class="form-group">
+            <label for="create-licencia">Licencia:</label>
+            <input type="text" id="create-licencia">
+        </div>
+        <div class="form-group">
+            <label for="create-edad">Edad:</label>
+            <input type="text" id="create-edad">
+        </div>
+        <div class="form-group">
+            <button onclick="createChofer()">Crear Chofer</button>
+        </div>
+
+        <!-- Formulario READ ALL CHOFERES -->
+        <h2>Leer Todos los Choferes</h2>
+        <div class="form-group">
+            <button onclick="getAllChoferes()">Obtener Choferes</button>
+        </div>
+        <div id="choferes-response" class="response"></div>
+
+        <!-- Formulario READ A CHOFER -->
+        <h2>Leer Chofer por DNI</h2>
+        <div class="form-group">
+            <label for="read-dni">DNI:</label>
+            <input type="text" id="read-dni">
+        </div>
+        <div class="form-group">
+            <button onclick="getChoferByDNI()">Obtener Chofer</button>
+        </div>
+        <div id="chofer-response" class="response"></div>
+
+        <!-- Formulario UPDATE A CHOFER -->
+        <h2>Actualizar Chofer</h2>
+        <div class="form-group">
+            <label for="update-dni">DNI:</label>
+            <input type="text" id="update-dni">
+        </div>
+        <div class="form-group">
+            <label for="update-nombre">Nuevo Nombre:</label>
+            <input type="text" id="update-nombre">
+        </div>
+        <div class="form-group">
+            <label for="update-apellido">Nuevo Apellido:</label>
+            <input type="text" id="update-apellido">
+        </div>
+        <div class="form-group">
+            <label for="update-edad">Nueva Edad:</label>
+            <input type="text" id="update-edad">
+        </div>
+        <div class="form-group">
+            <button onclick="updateChofer()">Actualizar Chofer</button>
+        </div>
+
+        <!-- Formulario DELETE A CHOFER -->
+        <h2>Eliminar Chofer por DNI</h2>
+        <div class="form-group">
+            <label for="delete-dni">DNI:</label>
+            <input type="text" id="delete-dni">
+        </div>
+        <div class="form-group">
+            <button onclick="deleteChofer()">Eliminar Chofer</button>
+        </div>
+    </div>
+
+
+<!--                                LOGICA JS                                -->
+    <script>
+        /*CREATE CHOFER*/
+        async function createChofer() {
+            const id = document.getElementById('create-id').value;
+            const nombre = document.getElementById('create-nombre').value;
+            const apellido = document.getElementById('create-apellido').value;
+            const dni = document.getElementById('create-dni').value;
+            const licencia = document.getElementById('create-licencia').value;
+            const edad = document.getElementById('create-edad').value;
+
+            const response = await fetch('127.0.0.1:3000/choferes', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ id, nombre, apellido, dni, licencia, edad })
+            });
+            const result = await response.text();
+            alert(result);
+        }
+
+        /*READ ALL CHOFERES*/
+        async function getAllChoferes() {
+            const response = await fetch('127.0.0.1:3000/choferes');
+            const choferes = await response.json();
+            document.getElementById('choferes-response').innerText = JSON.stringify(choferes, null, 2);
+        }
+
+        /*READ A CHOFER*/
+        async function getChoferByDNI() {
+            const dni = document.getElementById('read-dni').value;
+            if(!dni) {
+                document.getElementById('chofer-response').innerText = "No existe chofer";
+            } else {
+                const response = await fetch(`127.0.0.1:3000/choferes/${dni}`);
+                const chofer = await response.json();
+                document.getElementById('chofer-response').innerText = JSON.stringify(chofer, null, 2);
+            }
+            
+        }
+
+        /*UPDATE A CHOFER*/
+        async function updateChofer() {
+            const dni = document.getElementById('update-dni').value;
+            const nombre = document.getElementById('update-nombre').value;
+            const apellido = document.getElementById('update-apellido').value;
+            const edad = document.getElementById('update-edad').value;
+
+            const response = await fetch(`127.0.0.1:3000/choferes/${dni}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ nombre, apellido, edad })
+            });
+            const result = await response.text();
+            alert(result);
+        }
+
+        /*DELETE A CHOFER*/
+        async function deleteChofer() {
+            const dni = document.getElementById('delete-dni').value;
+            const response = await fetch(`127.0.0.1:3000/choferes/${dni}`, {
+                method: 'DELETE'
+            });
+            const result = await response.text();
+            alert(result);
+        }
+    </script>
+</body>
+</html>

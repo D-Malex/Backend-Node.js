@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="CRUD_icon.png" type="image/x-icon">
+    <title>Login - API Choferes Segura</title>
+</head>
+<body>
+    <h1>Bienvenido a la API de Choferes</h1>
+
+    <h2>Login de usuario</h2>
+    <form id="loginForm">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="email" required><br><br>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+    
+
+    <p style="color:gray">En caso de no tener usuario, por razones de seguridad, le recomendamo se <a href="registro.html" style="font-weight: bold; text-decoration: none;">registre</a>.</p>
+
+    <br>
+    <h2>Continuar</h2>
+    <button onclick="getProtectedData()">Get Protected Data</button>
+
+    <div id="protectedData"></div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            loginUser();
+        });
+        function loginUser() {
+            const formData = new FormData(document.getElementById('loginForm'));
+
+            fetch('http://localhost:3000/api/user/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(Object.fromEntries(formData))
+            })
+            .then(response => {
+                if (!response.ok) {throw new Error('Failed to login user');}
+                return response.text();
+            })
+            .then(data => {
+                console.log('User logged in successfully', data);
+                alert('User logged in successfully')
+                // Guardar el token en el almacenamiento local
+                localStorage.setItem('token', data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function getProtectedData() {
+            // Obtener el token del almacenamiento local
+            const token = localStorage.getItem('token');
+
+            fetch('http://localhost:3000/api/protected', {
+                headers: {'auth-token': token}
+            })
+            .then(response => {
+                if (!response.ok) {throw new Error('Failed to fetch protected data');}
+                return response.json();
+            })
+            .then(data => {
+                console.log('Protected data:', data);
+                // Mostrar la respuesta en el navegador
+                document.getElementById('protectedData').innerText = JSON.stringify(data, null, 2);
+
+                setTimeout(() => {
+                window.location.href = './logistica.html';  
+                }, 3000);
+                //espero 3 segundos y redireciono a logistica
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('protectedData').innerText = 'Error fetching protected data';
+            });
+        }
+    </script>
+</body>
+</html>
